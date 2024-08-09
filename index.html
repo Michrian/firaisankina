@@ -5,11 +5,23 @@
     <script>
         function submitForm(event) {
             event.preventDefault();
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyw87bYTka22DlTMEWF2DZXK9SKejw7opkEuw2GYrEs1gBTTX2GiUb_hU-L3d1p9CyXGw/exec';
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwG-AcEC8611J5WBeGoD9JJ1lmSGLN6N1gbJC_oSifozpIN5xvV8DTXaTxUftUzKMhXfg/exec';
             const form = document.forms['contact-form'];
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => alert('Formulaire envoyé avec succès!'))
-                .catch(error => console.error('Erreur!', error.message));
+            fetch(scriptURL, { 
+                method: 'POST', 
+                body: new FormData(form),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Formulaire envoyé avec succès!');
+                } else {
+                    throw new Error('Erreur lors de l\'envoi du formulaire');
+                }
+            })
+            .catch(error => console.error('Erreur!', error.message));
         }
     </script>
 </head>

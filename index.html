@@ -5,7 +5,7 @@
     <script>
         function submitForm(event) {
             event.preventDefault();
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyfhi_BvYytjKIdjNGdM0bAShO02DwwWnyIMDj3Aju9Hx96sgZZ7Ywxg0-VdCKREMHm1w/exec';
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyw87bYTka22DlTMEWF2DZXK9SKejw7opkEuw2GYrEs1gBTTX2GiUb_hU-L3d1p9CyXGw/exec';
             const form = document.forms['contact-form'];
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                 .then(response => alert('Formulaire envoyé avec succès!'))

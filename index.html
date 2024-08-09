@@ -10,13 +10,7 @@
             try {
                 const response = await fetch(scriptURL, { 
                     method: 'POST', 
-                    mode: 'cors', // Ajoute le mode CORS
-                    headers: {
-                        'Accept': 'application/json',
-                        'Access-Control-Allow-Origin': '*',
-                        'Access-Control-Allow-Methods': 'POST',
-                        'Access-Control-Allow-Headers': 'Content-Type',
-                    },
+                    mode: 'no-cors', // Ajoute le mode CORS
                     body: new FormData(form),
                 });
                 if (response.ok) {

@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Formulaire de Contact 1</title>
+    <title>Formulaire de Contact 2</title>
     <script>
-        function submitForm(event) {
+        async function submitForm(event) {
             event.preventDefault();
             const scriptURL = 'https://script.google.com/macros/s/AKfycby4I2z9o2wWcm_87WbatYdioXa5-LD_ViBoqzRN--rqKnTc262_Ktt2oZcFgDcL1xfjmw/exec';
             const form = document.forms['contact-form'];
-            fetch(scriptURL, { 
-                method: 'POST', 
-                body: new FormData(form),
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-            })
-            .then(response => {
+            try {
+                const response = await fetch(scriptURL, { 
+                    method: 'POST', 
+                    mode: 'cors', // Ajoute le mode CORS
+                    headers: {
+                        'Accept': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'POST',
+                        'Access-Control-Allow-Headers': 'Content-Type',
+                    },
+                    body: new FormData(form),
+                });
                 if (response.ok) {
                     alert('Formulaire envoyé avec succès!');
                 } else {
                     throw new Error('Erreur lors de l\'envoi du formulaire');
                 }
-            })
-            .catch(error => console.error('Erreur!', error.message));
+            } catch (error) {
+                console.error('Erreur!', error.message);
+            }
         }
     </script>
 </head>
